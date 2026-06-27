@@ -121,6 +121,68 @@
             border-color: rgba(242,217,139,0.42);
         }
 
+        .journal-shell {
+            padding: 28px;
+        }
+
+        .journal-section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .eyebrow {
+            margin: 0 0 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            font-size: 0.78rem;
+            font-weight: 800;
+            color: var(--gold);
+        }
+
+        .journal-section-header h2 {
+            margin: 0 0 6px;
+        }
+
+        .journal-section-pill {
+            background: rgba(212,175,55,0.14);
+            color: var(--gold-soft);
+            border: 1px solid rgba(212,175,55,0.24);
+            border-radius: 999px;
+            padding: 8px 12px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .journal-grid {
+            display: grid;
+            grid-template-columns: 1.02fr 0.98fr;
+            gap: 18px;
+        }
+
+        .journal-panel {
+            padding: 18px;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            background: rgba(255,255,255,0.04);
+        }
+
+        .journal-panel h3 {
+            margin: 0 0 8px;
+            color: var(--gold-soft);
+        }
+
+        .journal-panel__top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
         .intro {
             display: flex;
             justify-content: space-between;
@@ -419,9 +481,9 @@
         <section class="card">
             <div class="intro">
                 <div>
-                    <h1>Weekly Updates & Journal</h1>
-                    <p>This is where I’ll share reflections, lessons, and moments of growth as I continue pursuing God’s purpose for my life.</p>
-                    <p>My hope is that this space will remind me how far God has brought me and how faithful He remains.</p>
+                    <h1>Journal Section</h1>
+                    <p>This space holds the reflections, lessons, and moments of growth that shape the purpose behind this journey.</p>
+                    <p>It is meant to feel steady and encouraging, with room for both weekly updates and personal journaling.</p>
                 </div>
                 <div class="template-box">
                     <strong>Simple posting rhythm:</strong><br>
@@ -433,32 +495,47 @@
             </div>
         </section>
 
-        <section class="card">
-            <h2>Write a New Reflection</h2>
-            <form id="journal-form" class="journal-form">
-                <input id="journal-title" type="text" placeholder="Entry title" maxlength="60" />
-                <input id="journal-date" type="date" />
-                <select id="journal-mood">
-                    <option value="Reflective">Reflective</option>
-                    <option value="Grateful">Grateful</option>
-                    <option value="Focused">Focused</option>
-                    <option value="Hopeful">Hopeful</option>
-                    <option value="Determined">Determined</option>
-                </select>
-                <input id="journal-focus" type="text" placeholder="What were you focused on?" maxlength="80" />
-                <input id="journal-tags" type="text" placeholder="Tags (e.g. faith, workout, growth)" />
-                <textarea id="journal-text" placeholder="Write your journal entry here..."></textarea>
-                <div class="journal-actions">
-                    <button type="submit">Save Entry</button>
-                    <button id="clear-journal" class="ghost-button" type="button">Clear All</button>
+        <section class="card journal-shell">
+            <div class="journal-section-header">
+                <div>
+                    <p class="eyebrow">Interactive Journal</p>
+                    <h2>Capture your reflections in a calm, dedicated space</h2>
+                    <p>Use this area as your personal journal studio. It stays separate from the weekly updates and lessons above so the experience feels intentional and uncluttered.</p>
                 </div>
-            </form>
-        </section>
+                <div class="journal-section-pill">Private + personal</div>
+            </div>
 
-        <section class="card">
-            <h2>Your Journal Entries</h2>
-            <div id="journal-empty" class="template-box">No entries yet. Save your first reflection and it will appear here.</div>
-            <div id="journal-entries"></div>
+            <div class="journal-grid">
+                <div class="journal-panel">
+                    <h3>New Reflection</h3>
+                    <form id="journal-form" class="journal-form">
+                        <input id="journal-title" type="text" placeholder="Entry title" maxlength="60" />
+                        <input id="journal-date" type="date" />
+                        <select id="journal-mood">
+                            <option value="Reflective">Reflective</option>
+                            <option value="Grateful">Grateful</option>
+                            <option value="Focused">Focused</option>
+                            <option value="Hopeful">Hopeful</option>
+                            <option value="Determined">Determined</option>
+                        </select>
+                        <input id="journal-focus" type="text" placeholder="What were you focused on?" maxlength="80" />
+                        <input id="journal-tags" type="text" placeholder="Tags (e.g. faith, workout, growth)" />
+                        <textarea id="journal-text" placeholder="Write your journal entry here..."></textarea>
+                        <div class="journal-actions">
+                            <button type="submit">Save Entry</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="journal-panel">
+                    <div class="journal-panel__top">
+                        <h3>Saved Entries</h3>
+                        <button id="clear-journal" class="ghost-button" type="button">Clear All</button>
+                    </div>
+                    <div id="journal-empty" class="template-box">No entries yet. Save your first reflection and it will appear here.</div>
+                    <div id="journal-entries" aria-live="polite"></div>
+                </div>
+            </div>
         </section>
     </main>
 
