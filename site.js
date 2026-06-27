@@ -2,6 +2,7 @@ const THEME_STORAGE_KEY = 'court-calling-theme';
 const JOURNAL_STORAGE_KEY = 'court-calling-journal-entries';
 
 function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
   document.body.setAttribute('data-theme', theme);
   document.documentElement.style.colorScheme = theme;
 

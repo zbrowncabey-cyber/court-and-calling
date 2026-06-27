@@ -5,6 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Purpose Project | Journal</title>
     <meta name="description" content="A journal page for reflections, lessons, and moments of growth on my journey.">
+    <script>
+        (function () {
+            try {
+                const storageKey = 'court-calling-theme';
+                const saved = localStorage.getItem(storageKey);
+                const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+                const theme = saved || (prefersLight ? 'light' : 'dark');
+                document.documentElement.setAttribute('data-theme', theme);
+                document.documentElement.style.colorScheme = theme;
+            } catch (error) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
     <style>
         :root {
             --charcoal: #1f2933;
@@ -22,6 +36,7 @@
             --shadow: rgba(0, 0, 0, 0.22);
         }
 
+        html[data-theme="light"],
         body[data-theme="light"] {
             --charcoal: #f4efe6;
             --charcoal-deep: #fbf7ef;
@@ -174,15 +189,52 @@
             color: var(--gold-soft);
             border: 1px solid rgba(212,175,55,0.25);
             border-radius: 999px;
-            padding: 8px 12px;
+            padding: 7px 12px;
             font-weight: 700;
             cursor: pointer;
-            transition: transform 0.2s ease, background 0.2s ease;
+            transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.12);
         }
 
         .theme-toggle:hover {
             transform: translateY(-1px);
             background: rgba(212,175,55,0.18);
+            box-shadow: 0 8px 18px rgba(15, 23, 42, 0.12);
+        }
+
+        .theme-toggle__switch {
+            width: 38px;
+            height: 22px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, rgba(212,175,55,0.35), rgba(255,255,255,0.16));
+            border: 1px solid rgba(212,175,55,0.3);
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 2px;
+            transition: background 0.25s ease, justify-content 0.25s ease;
+        }
+
+        .theme-toggle__switch::after {
+            content: '';
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--white);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.16);
+            transform: translateX(0);
+            transition: transform 0.25s ease, background 0.25s ease;
+        }
+
+        .theme-toggle[aria-pressed="true"] .theme-toggle__switch {
+            justify-content: flex-end;
+            background: linear-gradient(135deg, rgba(212,175,55,0.55), rgba(242,217,139,0.2));
+        }
+
+        .theme-toggle[aria-pressed="true"] .theme-toggle__switch::after {
+            transform: translateX(16px);
+            background: #fff8e1;
         }
 
         .journal-form {
@@ -366,8 +418,8 @@
             <a class="active" href="journal.html">Journal</a>
             <a href="contact.html">Contact</a>
             <button class="theme-toggle" type="button" aria-pressed="false">
-                <span class="theme-toggle__icon">☀️</span>
-                <span class="theme-toggle__text">Light</span>
+                <span class="theme-toggle__switch" aria-hidden="true"></span>
+                <span class="theme-toggle__text">Theme</span>
             </button>
         </nav>
     </header>
